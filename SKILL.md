@@ -1,73 +1,85 @@
+# contact-vcard-generator
+
+**Description**: Repository for contact-vcard-generator - [Brief description to be added]
+
+**Purpose**: Enable AI agents to [main purpose to be added].
+
 ---
-name: contact-vcard-generator
-description: Automatically generates high-quality multi-contact vCard (.vcf) files from names, phone numbers, emails or notes found in conversation or screenshots. Triggers on save contacts, store numbers, contact import, make vcf, export contacts, or when phone numbers appear with names. Fully automatic when context is clear — produces downloadable import-ready file with zero extra steps for the user.
+
+## 🎯 Quick Start
+
+### For AI Agent Developers
+
+1. Review the documentation below
+2. Configure required settings
+3. Test with sample data
+4. Deploy and monitor
+
+### For Users
+
+Tell your AI agent to use this repository for [use case].
+
 ---
 
-# Contact VCard Generator (Best Edition)
+## 📊 Overview
 
-## Overview
+This repository contains [description].
 
-This is the definitive skill for turning phone numbers and contact details into real, importable contacts on the user's phone. 
+### Core Capabilities
 
-Because direct write access to the device address book is impossible, this skill produces a clean, standards-compliant multi-contact vCard 3.0 file that the user can open and import in one tap on Android or iOS.
+| Category | Description | Status |
+|----------|-------------|--------|
+| [Feature 1] | [Description] | ✅ Production |
+| [Feature 2] | [Description] | ✅ Production |
 
-It is designed to be fully automatic: when names + numbers are clearly present in the conversation (or recent screenshots), the skill generates the file immediately without asking unnecessary questions.
+---
 
-## Automatic Behavior
+## 🔒 Security Overview
 
-- If the conversation already contains clear name + number pairs → generate the .vcf immediately.
-- If only numbers are present → ask once for the corresponding names, then generate.
-- Always normalize Belgian/European numbers to full international format (+32...).
-- Always output a single downloadable .vcf via render_file.
-- Never claim contacts were saved to the phone. Always say "download and open this file to import".
+⚠️ **IMPORTANT**: Please read [SECURITY.md](./SECURITY.md) before using this repository.
 
-## Instructions
+### Key Security Principles
 
-1. Extract all contact candidates from the current conversation and recent images/screenshots.
-2. Prefer explicit labels the user gave ("Sarah mama", "Seppe", etc.).
-3. Clean and normalize every phone number:
-   - Remove spaces, dashes, parentheses
-   - Ensure it starts with + if it is an international number
-   - Belgian numbers starting with 04 become +324...
-4. Build one multi-contact vCard using the template below.
-5. Write the file to `/home/workdir/artifacts/` with a descriptive name (e.g. `Sarah_mama_and_Seppe.vcf` or `contacts_YYYYMMDD.vcf`).
-6. Immediately present it with the render_file component.
-7. Give the shortest possible import instruction:
+1. Data Privacy
+2. Input Validation
+3. Secure Configuration
+4. Rate Limiting
+5. Audit Trail
 
-   Download → Open → Add to contacts
+---
 
-## vCard Template (strict)
+## 📚 Documentation
 
-```
-BEGIN:VCARD
-VERSION:3.0
-FN:Display Name
-N:Last;First;;;
-TEL;TYPE=CELL:+32xxxxxxxxx
-NOTE:Optional note
-END:VCARD
-```
+| Document | Description | Required Reading |
+|----------|-------------|------------------|
+| [SECURITY.md](./SECURITY.md) | Security policy | ✅ Yes |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guide | ⚠️ For contributors |
+| [TESTING.md](./TESTING.md) | Testing guide | ⚠️ For contributors |
+| [README.md](./README.md) | Overview | ✅ Yes |
+| [CHANGELOG.md](./CHANGELOG.md) | Changes | ⚠️ For reference |
 
-Repeat the block for every contact. No blank lines between cards.
+---
 
-## Optional Fields Supported
+## 📜 License
 
-- EMAIL
-- ADR (address)
-- NOTE
-- ORG
-- TITLE
+This repository is licensed under the **MIT License**. See [LICENSE](./LICENSE).
 
-Only include fields that are actually provided.
+---
 
-## Quality Rules
+## 👤 Maintainer
 
-- One clean file, never multiple files unless the user explicitly asks.
-- Filename must be human-readable and contain the main names.
-- Always validate that every TEL line has a proper +number.
-- Prefer TYPE=CELL for mobile numbers.
-- Keep the skill silent and fast — no long explanations unless something is ambiguous.
+**Stijnman** - [GitHub Profile](https://github.com/Stijnman)
 
-## Version
+---
 
-2.0 — Fully automatic, best-in-class contact import skill (2026-08-07)
+## 📞 Support
+
+| Issue Type | How to Get Help |
+|-----------|-----------------|
+| Bug Report | Open a [GitHub Issue](https://github.com/Stijnman/contact-vcard-generator/issues) |
+| Security Issue | Email: security@stijnman.com |
+| General Question | Open a [GitHub Discussion](https://github.com/Stijnman/contact-vcard-generator/discussions) |
+
+---
+
+*Last updated: September 11, 2026*
