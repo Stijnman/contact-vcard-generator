@@ -9,6 +9,13 @@ import json
 import re
 from pathlib import Path
 
+def escape_text(value: str) -> str:
+    """Escape vCard TEXT values without allowing new property lines."""
+    return (value.replace("\\", "\\\\").replace("\r\n", "\n")
+            .replace("\r", "\n").replace("\n", "\\n")
+            .replace(";", "\\;").replace(",", "\\,"))
+
+
 def normalize_phone(phone: str) -> str:
     phone = re.sub(r"[\s\-\(\)]", "", phone)
     if phone.startswith("04") and len(phone) == 10:
@@ -18,10 +25,10 @@ def normalize_phone(phone: str) -> str:
     return phone
 
 def make_vcard(contact: dict) -> str:
-    fn = contact.get("fn", "Unknown").strip()
+    fn = escape_text(contact.get("fn", "Unknown").strip())
     tel = normalize_phone(contact.get("tel", ""))
-    note = contact.get("note", "").strip()
-    email = contact.get("email", "").strip()
+    note = escape_text(contact.get("note", "").strip())
+    email = escape_text(contact.get("email", "").strip())
 
     lines = [
         "BEGIN:VCARD",
